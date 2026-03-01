@@ -1,0 +1,34 @@
+[package]
+name = "lancer-wireshark-ui"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "Native egui GUI panel for lancer-wireshark"
+
+[dependencies]
+wsutil = { path = "../wsutil" }
+epan = { path = "../epan" }
+lancer-wireshark-capture = { path = "../capture" }
+
+anyhow.workspace = true
+thiserror.workspace = true
+tracing.workspace = true
+once_cell.workspace = true
+parking_lot.workspace = true
+crossbeam-channel.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+
+eframe.workspace = true
+egui.workspace = true
+egui_extras.workspace = true
+egui_plot.workspace = true
+rfd.workspace = true
+directories.workspace = true
+image.workspace = true
+arboard.workspace = true
+egui-notify.workspace = true
+chrono.workspace = true
+hex.workspace = true
+tiny_http.workspace = true

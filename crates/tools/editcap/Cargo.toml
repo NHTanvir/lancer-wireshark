@@ -1,0 +1,29 @@
+[package]
+name = "editcap"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "editcap-equivalent — slice / filter / anonymize / extract secrets / compress capture files"
+
+[[bin]]
+name = "editcap"
+path = "src/main.rs"
+
+[dependencies]
+wsutil = { path = "../../wsutil" }
+epan = { path = "../../epan" }
+lancer-wireshark-capture = { path = "../../capture" }
+
+clap.workspace = true
+anyhow.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+pcap-file.workspace = true
+chrono.workspace = true
+hex.workspace = true
+flate2.workspace = true
+zstd.workspace = true
+lz4_flex.workspace = true
+serde.workspace = true
+serde_json.workspace = true

@@ -14,3 +14,8 @@ Thumbs.db
 *.log
 .idea/
 .vscode/
+
+# Cargo lockfile is committed at the workspace root, but local profile data isn't.
+**/*.rs.bk
+**/_temp/
+

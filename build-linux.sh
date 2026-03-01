@@ -3,24 +3,53 @@ set -euo pipefail
 
 REPO="$(cd "$(dirname "$0")" && pwd)"
 BUILD="$REPO/build"
-BIN="lancer-wireshark"
 
 echo "================================================"
-echo "  lancer-wireshark Build"
+echo "  lancer-wireshark Workspace Build"
 echo "================================================"
 echo ""
 echo "  Repo   : $REPO"
-echo "  Output : $BUILD/$BIN"
+echo "  Output : $BUILD"
 echo ""
 
-echo "[1/2] Building release binary..."
-cargo build --release
+echo "[1/2] Building workspace (release)..."
+cargo build --release --workspace
 
-echo "[2/2] Copying to build/..."
+echo "[2/2] Copying binaries to build/..."
 mkdir -p "$BUILD"
-cp "$REPO/target/release/$BIN" "$BUILD/"
+for b in \
+    lancer-wireshark \
+    lancer-wireshark-cli \
+    editcap \
+    mergecap \
+    capinfos \
+    text2pcap \
+    randpkt \
+    rawshark \
+    sharkd \
+    dumpcap ; do
+    if [ -f "$REPO/target/release/$b" ]; then
+        cp "$REPO/target/release/$b" "$BUILD/"
+        echo "  + $b"
+    fi
+done
 
 echo ""
 echo "================================================"
-echo "  Done!  Binary ready: $BUILD/$BIN"
+echo "  Done! Binaries in $BUILD/"
 echo "================================================"
+
+if [ "${1:-}" = "--install" ]; then
+    DESTDIR="${DESTDIR:-$HOME/.local}"
+    mkdir -p "$DESTDIR/bin"
+    cp "$BUILD"/* "$DESTDIR/bin/"
+    cat <<EOF >"$DESTDIR/share/applications/lancer-wireshark.desktop"
+[Desktop Entry]
+Name=lancer-wireshark
+Comment=Rust clone of wireshark — capture & dissection
+Exec=$DESTDIR/bin/lancer-wireshark
+Type=Application
+Categories=Network;Monitor;
+EOF
+    echo "Installed to $DESTDIR/bin (.desktop in $DESTDIR/share/applications)"
+fi

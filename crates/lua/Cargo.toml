@@ -1,0 +1,16 @@
+[package]
+name = "lancer-wireshark-lua"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "Lua 5.4 scripting bridge for lancer-wireshark custom dissectors"
+
+[dependencies]
+epan = { path = "../epan" }
+wsutil = { path = "../wsutil" }
+
+anyhow.workspace = true
+tracing.workspace = true
+mlua.workspace = true
+parking_lot.workspace = true

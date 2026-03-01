@@ -1,0 +1,26 @@
+[package]
+name = "sharkd"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "sharkd-equivalent — long-running JSON-RPC dissection daemon"
+
+[[bin]]
+name = "sharkd"
+path = "src/main.rs"
+
+[dependencies]
+wsutil = { path = "../../wsutil" }
+epan = { path = "../../epan" }
+
+clap.workspace = true
+anyhow.workspace = true
+tokio.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+chrono.workspace = true
+pcap-file.workspace = true
+parking_lot.workspace = true

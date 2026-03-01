@@ -1,0 +1,24 @@
+[package]
+name = "rawshark"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "rawshark-equivalent — no-pcap-header stream dissection for pipe consumers"
+
+[[bin]]
+name = "rawshark"
+path = "src/main.rs"
+
+[dependencies]
+wsutil = { path = "../../wsutil" }
+epan = { path = "../../epan" }
+
+clap.workspace = true
+anyhow.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+chrono.workspace = true
+hex.workspace = true

@@ -3,26 +3,30 @@ setlocal enabledelayedexpansion
 title lancer-wireshark Build
 
 REM ============================================================
-REM  build.bat -- Build lancer-wireshark.exe for Windows
-REM  Output: build$PKG.exe
+REM  build.bat -- Build all lancer-wireshark binaries for Windows.
+REM  Output: build\*.exe (lancer-wireshark.exe, editcap.exe,
+REM          mergecap.exe, capinfos.exe, text2pcap.exe, randpkt.exe,
+REM          rawshark.exe, sharkd.exe, dumpcap.exe,
+REM          lancer-wireshark-cli.exe)
 REM
 REM  Requirements:
-REM    - Rust / Cargo   https://rustup.rs
-REM    - Visual C++ Build Tools (2019/2022)
+REM    - Rust / Cargo            https://rustup.rs
+REM    - Visual C++ Build Tools  (2019 / 2022)
+REM    - Npcap SDK installed; set LIB / INCLUDE to its lib/include dirs
+REM      so the `pcap` crate can link against `wpcap.lib`.
 REM ============================================================
 
 set "REPO=%~dp0"
 set "REPO=%REPO:~0,-1%"
 set "BUILD=%REPO%\build"
-set "BIN=lancer-wireshark.exe"
 
 echo.
 echo  ================================================
-echo    lancer-wireshark  Build
+echo    lancer-wireshark  Workspace Build
 echo  ================================================
 echo.
 echo  Repo   : %REPO%
-echo  Output : %BUILD%\%BIN%
+echo  Output : %BUILD%
 echo.
 
 REM Locate cargo
@@ -39,28 +43,37 @@ if errorlevel 1 (
     set "CARGO=cargo"
 )
 
-echo  [1/2]  Building release binary...
-"!CARGO!" build --release
+echo  [1/2]  Building workspace (release)...
+"!CARGO!" build --release --workspace
 if errorlevel 1 (
     echo  ERROR: cargo build failed
     pause
     exit /b 1
 )
 
-echo  [2/2]  Copying to build\...
+echo  [2/2]  Copying binaries to build\...
 if not exist "%BUILD%" mkdir "%BUILD%"
-copy /Y "%REPO%\target\release\%BIN%" "%BUILD%\" >/dev/null
-if errorlevel 1 (
-    echo  ERROR: %BIN% not found in target\release
-    pause
-    exit /b 1
+for %%B in (
+    lancer-wireshark.exe
+    lancer-wireshark-cli.exe
+    editcap.exe
+    mergecap.exe
+    capinfos.exe
+    text2pcap.exe
+    randpkt.exe
+    rawshark.exe
+    sharkd.exe
+    dumpcap.exe
+) do (
+    if exist "%REPO%\target\release\%%B" (
+        copy /Y "%REPO%\target\release\%%B" "%BUILD%\" >/dev/null
+        echo    + %%B
+    )
 )
 
 echo.
 echo  ================================================
-echo    Done!  Binary ready:
-echo.
-echo    %BUILD%\%BIN%
+echo    Done!  Binaries in %BUILD%\
 echo  ================================================
 echo.
 pause

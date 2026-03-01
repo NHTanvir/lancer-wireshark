@@ -1,0 +1,25 @@
+[package]
+name = "lancer-wireshark-capture"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "Capture-file and live-capture I/O for lancer-wireshark"
+
+[dependencies]
+wsutil = { path = "../wsutil" }
+
+anyhow.workspace = true
+thiserror.workspace = true
+tracing.workspace = true
+chrono.workspace = true
+hex.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+
+pcap.workspace = true
+pcap-file.workspace = true
+flate2.workspace = true
+zstd.workspace = true
+lz4_flex.workspace = true
+crossbeam-channel.workspace = true

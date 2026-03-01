@@ -1,0 +1,26 @@
+[package]
+name = "dumpcap"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "dumpcap-equivalent — privileged raw-socket capture daemon"
+
+[[bin]]
+name = "dumpcap"
+path = "src/main.rs"
+
+[dependencies]
+wsutil = { path = "../../wsutil" }
+lancer-wireshark-capture = { path = "../../capture" }
+
+clap.workspace = true
+anyhow.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+pcap.workspace = true
+pcap-file.workspace = true
+chrono.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+crossbeam-channel.workspace = true

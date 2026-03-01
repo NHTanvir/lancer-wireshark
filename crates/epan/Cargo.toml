@@ -1,0 +1,41 @@
+[package]
+name = "epan"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "Enhanced Packet ANalyzer — dissection engine for lancer-wireshark"
+
+[dependencies]
+wsutil = { path = "../wsutil" }
+
+anyhow.workspace = true
+thiserror.workspace = true
+tracing.workspace = true
+once_cell.workspace = true
+parking_lot.workspace = true
+dashmap.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+
+# parsing helpers
+nom.workspace = true
+regex.workspace = true
+byteorder.workspace = true
+hex.workspace = true
+chrono.workspace = true
+etherparse.workspace = true
+
+# crypto for tls decryption
+ring.workspace = true
+sha2.workspace = true
+hmac.workspace = true
+aes.workspace = true
+aes-gcm.workspace = true
+chacha20poly1305.workspace = true
+sha1 = "0.10"
+
+# compression for HTTP body decompress
+flate2.workspace = true
+brotli.workspace = true
+zstd.workspace = true

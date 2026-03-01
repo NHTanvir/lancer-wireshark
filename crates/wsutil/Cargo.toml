@@ -1,0 +1,30 @@
+[package]
+name = "wsutil"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "Lancer-wireshark utility crate (bytes, time, OUI, name resolution, BPF glue)"
+
+[dependencies]
+anyhow.workspace = true
+thiserror.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+chrono.workspace = true
+time.workspace = true
+hex.workspace = true
+byteorder.workspace = true
+once_cell.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+ipnetwork.workspace = true
+mac_address.workspace = true
+parking_lot.workspace = true
+dashmap.workspace = true
+regex.workspace = true
+bitflags = "2"
+flate2.workspace = true
+zstd.workspace = true
+lz4_flex.workspace = true
+directories.workspace = true

@@ -1,0 +1,57 @@
+[package]
+name = "lancer-wireshark"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "Rust clone of wireshark — CLI + GUI, part of the Lancer toolkit"
+repository.workspace = true
+
+[lib]
+name = "lancer_wireshark"
+path = "src/lib.rs"
+
+[[bin]]
+name = "lancer-wireshark"
+path = "src/main.rs"
+
+[[bin]]
+name = "lancer-wireshark-cli"
+path = "src/bin/cli.rs"
+
+[dependencies]
+wsutil = { path = "../wsutil" }
+epan = { path = "../epan" }
+lancer-wireshark-capture = { path = "../capture" }
+lancer-wireshark-lua = { path = "../lua" }
+lancer-wireshark-ui = { path = "../ui" }
+
+clap.workspace = true
+tokio.workspace = true
+anyhow.workspace = true
+thiserror.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+once_cell.workspace = true
+parking_lot.workspace = true
+crossbeam-channel.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+quick-xml.workspace = true
+chrono.workspace = true
+hex.workspace = true
+regex.workspace = true
+mlua.workspace = true
+
+# capture
+pcap.workspace = true
+pcap-file.workspace = true
+
+# compression
+flate2.workspace = true
+zstd.workspace = true
+lz4_flex.workspace = true
+
+# cross-tool integration
+tiny_http.workspace = true
+directories.workspace = true
